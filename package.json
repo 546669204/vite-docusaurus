@@ -1,5 +1,15 @@
 {
     "name": "vite-docusaurus",
+    "description": "A docusaurus packager based on vite.",
+    "author": {
+        "name": "xiaoming",
+        "url": "https://github.com/546669204"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:546669204/vite-docusaurus.git"
+    },
+    "license": "MIT",
     "version": "1.0.4",
     "bin": "bin/vite-docusaurus.js",
     "scripts": {
