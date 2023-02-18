@@ -15,7 +15,7 @@ yarn add vite-docusaurus
 
 
 edit package.json 
-```
+```diff
   "scripts": {
     "docusaurus": "docusaurus",
     "swizzle": "docusaurus swizzle",
@@ -47,9 +47,8 @@ yarn preview
 
 ```
 
-
 ## Future 
 
- [*] vite  
- [*] esbuild  
- [*] fast  
+- [*]  vite  
+- [*] esbuild  
+- [*] fast  
