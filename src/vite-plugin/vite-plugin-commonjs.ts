@@ -1,5 +1,6 @@
 // @ts-nocheck
 "use strict";
+const { toPosixPath } = require("./utils");
 const path = require("node:path");
 const os = require("node:os");
 const node_module = require("node:module");
@@ -232,7 +233,7 @@ function generateImport(analyzed) {
          ${"^".repeat(codeSnippets.length)}`);
     }
     {
-      impt.importee = `import * as ${importName} from '${requireId}'`;
+      impt.importee = `import * as ${importName} from '${toPosixPath(requireId)}'`;
       impt.importName = `${importName}.default || ${importName}`;
     }
     imports.push(impt);

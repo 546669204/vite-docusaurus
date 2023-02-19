@@ -27,7 +27,7 @@ import transformAdmonitions from '@docusaurus/mdx-loader/lib/remark/admonitions'
 import { mkdir, readFile, realpath, writeFile } from 'fs/promises';
 import { Plugin } from "vite"
 import qs from "node:querystring"
-import { getFilePath } from "./utils"
+import { getFilePath, toPosixPath } from "./utils"
 import { Props } from "@docusaurus/types"
 
 const vitePluginMdx = async ({ props }: { props: Props }) => {
@@ -242,7 +242,7 @@ const vitePluginMdx = async ({ props }: { props: Props }) => {
   import React from 'react';
   import { mdx } from '@mdx-js/react';
   ${exportsCode}
-  export { default } from '${filePath}?compoent'
+  export { default } from '${toPosixPath(filePath)}?compoent'
 ${result.replace("export default", "")} 
 
 if (import.meta.hot) {

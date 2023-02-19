@@ -9,3 +9,7 @@ export function getFilePath(id: string, baseDir: string) {
   }
   throw "existsSync " + id
 }
+
+export function toPosixPath(v: any) {
+  return String(v).split(path.sep).join(path.posix.sep)
+}

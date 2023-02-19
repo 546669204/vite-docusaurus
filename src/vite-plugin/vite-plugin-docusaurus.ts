@@ -5,6 +5,7 @@ import type { Props, LoadContext } from "@docusaurus/types"
 import qs from "node:querystring"
 import { readdirSync } from "fs-extra";
 import path from "node:path"
+import { toPosixPath } from "./utils";
 
 const vitePluginDocusaurus = ({ context, alias, props, ssrBuild }: {
   context: LoadContext,
@@ -24,10 +25,10 @@ const vitePluginDocusaurus = ({ context, alias, props, ssrBuild }: {
           "~debug": context.generatedFilesDir + "/docusaurus-plugin-debug/",
         };
         const keys = Object.keys(m) as ("~docs" | "~pages" | "~blog" | "~debug")[];
-        let text = keys.reduce((acc, v) => (acc.replaceAll(v, m[v])), readFileSync(id).toString());
+        let text = keys.reduce((acc, v) => (acc.replaceAll(v, toPosixPath(m[v]))), readFileSync(id).toString());
         const arr = [...text.matchAll(/require\.resolveWeak\((.*)\)/gi)]
         for (const a of arr) {
-          let moduleName = eval(a[1])
+          let moduleName = eval(toPosixPath(a[1]))
           if (alias[moduleName]) {
             text = text.replaceAll(a[0], JSON.stringify(alias[moduleName]));
             continue
@@ -65,17 +66,17 @@ delete globalThis.Prism;
 }
 function matchRequire(path){
 switch(path){
-${list.filter(name => name.startsWith("prism-")).map(name => {
-    return `            case "prismjs/components/${name.replace(/\.js$/,'')}": 
+${list.filter((name: string) => name.startsWith("prism-")).map((name: string) => {
+          return `            case "prismjs/components/${name.replace(/\.js$/, '')}": 
     case "prismjs/components/${name}":
-        return import('${path.join(prismComponentPath, name)}');\n`
-}).join('')}
+        return import('${toPosixPath(path.join(prismComponentPath, name))}');\n`
+        }).join('')}
 default: throw new Error("Cann't found module: " + path);
 }
 }
 `
 
-    }
+      }
       const [modulePath, queryStr = ''] = id.split("?");
       const query = qs.parse(queryStr)
       if (query && "raw" in query) {
