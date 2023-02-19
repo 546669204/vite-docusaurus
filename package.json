@@ -10,7 +10,7 @@
         "url": "git@github.com:546669204/vite-docusaurus.git"
     },
     "license": "MIT",
-    "version": "1.0.7",
+    "version": "1.0.10",
     "bin": "bin/vite-docusaurus.js",
     "scripts": {
         "build": "tsc"
@@ -33,11 +33,13 @@
         "@vitejs/plugin-react": "^3.0.1",
         "@vitejs/plugin-react-swc": "^3.0.1",
         "cac": "^6.7.14",
+        "chokidar": "^3.5.3",
         "clsx": "^1.2.1",
         "esbuild": "^0.16.17",
         "escape-html": "^1.0.3",
         "fs-extra": "^11.1.0",
         "image-size": "^1.0.2",
+        "lodash": "^4.17.21",
         "prism-react-renderer": "^1.3.5",
         "remark-emoji": "2",
         "resolve": "^1.22.1",

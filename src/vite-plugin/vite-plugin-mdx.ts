@@ -14,7 +14,8 @@ import {
   createAbsoluteFilePathMatcher,
   getContentPathList,
   addTrailingPathSeparator,
-  getPluginI18nPath
+  getPluginI18nPath,
+  posixPath
 } from '@docusaurus/utils';
 import { readVersionsMetadata } from '@docusaurus/plugin-content-docs/lib/versions/index.js';
 import headings from '@docusaurus/mdx-loader/lib/remark/headings';
@@ -276,9 +277,10 @@ if (import.meta.hot) {
       }
     },
     handleHotUpdate(ctx) {
-      let modules = ctx.server.moduleGraph.getModulesByFile(ctx.file + ".jsx");
+      let nid = posixPath(ctx.file);
+      let modules = ctx.server.moduleGraph.getModulesByFile(nid + ".jsx");
       if (!modules) {
-        modules = ctx.server.moduleGraph.getModulesByFile("/" + path.relative(props.siteDir, ctx.file) + ".jsx");
+        modules = ctx.server.moduleGraph.getModulesByFile(posixPath("/" + path.relative(props.siteDir, nid) + ".jsx"));
       }
       if (modules) {
         return [...modules.values()].filter(v => v.id?.includes("?compoent"))
@@ -286,12 +288,13 @@ if (import.meta.hot) {
     },
     resolveId(source, importer, options) {
       const [id, option = ''] = source.split("?");
+      let nid = posixPath(id);
       if (/\.mdx?$/.test(id)) {
-        this.addWatchFile(id)
+        this.addWatchFile(nid)
         return {
-          id: id + ".jsx?" + option,
+          id: nid + ".jsx?" + option,
           // external: "absolute",
-          resolveDir: path.dirname(id)
+          resolveDir: path.dirname(nid)
         }
       }
       return null;

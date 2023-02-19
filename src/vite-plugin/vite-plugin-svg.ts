@@ -10,6 +10,7 @@ const vitePluginSvg = async ({ props }: { props: Props }) => {
     enforce: "pre",
     resolveId(source, importer) {
       if (source.endsWith('.svg') && importer) {
+        if (path.isAbsolute(source)) return
         return path.resolve(path.dirname(importer), source);
       }
     },
