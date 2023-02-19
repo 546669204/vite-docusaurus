@@ -9,6 +9,8 @@
 
 ## Installation and Usage
 
+example: https://github.com/546669204/nav-website.git
+
 ```
 yarn add vite-docusaurus
 ```
