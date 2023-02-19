@@ -10,7 +10,7 @@
         "url": "git@github.com:546669204/vite-docusaurus.git"
     },
     "license": "MIT",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "bin": "bin/vite-docusaurus.js",
     "scripts": {
         "build": "tsc"
