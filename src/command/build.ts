@@ -108,8 +108,8 @@ export default async function build() {
           routesLocation,
           headTags,
           preBodyTags:preBodyTags.concat(`
-<script type="module" crossorigin src="/${obj["node_modules/vite-docusaurus/index.html"].file}"></script>
-<link rel="stylesheet" href="/${obj["style.css"].file}">
+<script type="module" crossorigin src="${props.baseUrl}${obj["node_modules/vite-docusaurus/index.html"].file}"></script>
+<link rel="stylesheet" href="${props.baseUrl}${obj["style.css"].file}">
 <script type="module">try{import.meta.url;import("_").catch(()=>1);}catch(e){}window.__vite_is_modern_browser=true;</script>
 <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy build because dynamic import or import.meta.url is unsupported, syntax error above should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
                     `),
@@ -123,8 +123,8 @@ let __webpack_require__ = {
 }
 </script>
 <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
-<script nomodule crossorigin id="vite-legacy-polyfill" src="/${obj["vite/legacy-polyfills-legacy"].file}"></script>
-<script nomodule crossorigin id="vite-legacy-entry" data-src="/${obj["node_modules/vite-docusaurus/index-legacy.html"].file}">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+<script nomodule crossorigin id="vite-legacy-polyfill" src="${props.baseUrl}${obj["vite/legacy-polyfills-legacy"].file}"></script>
+<script nomodule crossorigin id="vite-legacy-entry" data-src="${props.baseUrl}${obj["node_modules/vite-docusaurus/index-legacy.html"].file}">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
                     `),
           onLinksCollected() { },
           onHeadTagsCollected() { },

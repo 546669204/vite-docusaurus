@@ -14,6 +14,7 @@ export default ({ context, alias, props }: {
   },
 }) => defineConfig(async ({ mode, ssrBuild }) => {
   return {// 配置选项
+    base: props.baseUrl,
     publicDir: "static",
     define: {
       "process.env.NODE_ENV": JSON.stringify(mode)
@@ -33,7 +34,7 @@ export default ({ context, alias, props }: {
         // ignoreDynamicRequires: true
       },
       rollupOptions: {
-        input:require.resolve("../../index.html"),
+        input: require.resolve("../../index.html"),
         external: ["chalk"].concat(ssrBuild ? ["react"] : []),
         output: {
           inlineDynamicImports: ssrBuild
